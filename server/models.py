@@ -34,12 +34,15 @@ class Onboarding(db.Model):
         return f"<Onboarding {self.id}, {self.orientation}, {self.forms_complete}>"
 
 
-class Review(db.Model):
-    __tablename__ = "reviews"
+    
+    class Review(db.Model):
+       __tablename__ = 'reviews'
 
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
     summary = db.Column(db.String)
+    # Foreign key stores the Employee id
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
 
     def __repr__(self):
-        return f"<Review {self.id}, {self.year}, {self.summary}>"
+        return f'<Review {self.id}, {self.year}, {self.summary}>'
